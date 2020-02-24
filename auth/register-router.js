@@ -6,6 +6,10 @@ const Users = require('../users/users-model.js');
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.json({ message: 'There is nothing to GET here...move along!' });
+});
+
 router.post('/', (req, res) => {
     let user = req.body;
 

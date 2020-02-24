@@ -19,6 +19,6 @@ module.exports = function restricted(req, res, next) {
                 res.status(500).json({ name, message, stack });
             })
     } else {
-        res.status(400).json({ message: 'Please use valid credentials to access this content.' })
+        res.status(400).json({ message: 'You shall not pass!!! Please use valid credentials to access this content.' })
     }
 }
