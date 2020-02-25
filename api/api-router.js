@@ -1,14 +1,12 @@
 const express = require('express');
 
-const registerRouter = require('../auth/register-router.js');
-const loginRouter = require('../auth/login-router.js');
+const authRouter = require('../auth/auth-router.js');
 const userRouter = require('../users/users-router.js');
 const restricted = require('../auth/restricted-middleware.js');
 
 const router = express.Router();
 
-router.use('/register', registerRouter);
-router.use('/login', loginRouter);
+router.use('/auth', authRouter);
 router.use('/users', restricted, userRouter);
 
 router.get('/', (req, res) => {
