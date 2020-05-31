@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-
 const express = require('express');
 
 const Users = require('../users/users-model');
@@ -17,6 +16,8 @@ router.post('/', (req, res) => {
         .first()
         .then(user => {
             if (user && bcrypt.compareSync(password, user.password)) {
+                req.session.loggedIn = true;
+                req.session.username = user.username;
                 res.status(200).json({ message: `Welcome ${user.username}! You now have access to the /users route!` });
             } else {
                 res.status(401).json({ message: 'Invalid Credentials...You shall not pass!!' });

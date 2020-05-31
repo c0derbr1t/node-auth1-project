@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-
 const express = require('express');
 
 const Users = require('../users/users-model.js');
@@ -19,6 +18,8 @@ router.post('/', (req, res) => {
 
     Users.add(user)
         .then(saved => {
+            req.session.loggedIn = true;
+            req.session.username = user.username;
             res.status(201).json(saved);
         })
         .catch(err => {

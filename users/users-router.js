@@ -1,11 +1,11 @@
 const express = require('express');
 
-const users = require('./users-model');
+const Users = require('./users-model.js');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    users.find()
+    Users.find()
         .then(users => {
             res.status(200).json(users);
         })
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
-    users.findById(id)
+    Users.findById(id)
         .first()
         .then(user => {
             if (user) {
